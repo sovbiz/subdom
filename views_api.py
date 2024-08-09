@@ -217,7 +217,7 @@ async def api_address_create(
         payment_hash, payment_request = await create_invoice(
             wallet_id=domain.wallet,
             amount=price_in_sats,
-            memo=f"Payment for NIP-05 for {address.local_part}@{domain.domain}",
+            memo=f"{address.id}",
             extra={
                 "tag": "nostrnip5",
                 "domain_id": domain_id,

@@ -1,18 +1,31 @@
-{% extends "public.html" %} {% block toolbar_title %} Verify NIP-5 For {{
-domain.domain }} {% endblock %} {% from "macros.jinja" import window_vars with
+{% extends "public.html" %} {% block toolbar_title %}  {% endblock %} {% from "macros.jinja" import window_vars with
 context %} {% block page %}
 <link rel="stylesheet" href="/nostrnip5/static/css/signup.css" />
 <div>
   <q-card class="q-pa-lg q-pt-lg" v-if="success == true">
     {% raw %}
-    <p>
-      Success! Your username is now active at {{ successData.local_part }}@{{
-      domain }}. Please add this to your nostr profile accordingly. If you ever
-      need to rotate your keys, you can still keep your identity!
-    </p>
+    <h2 class="text-center">
+      🎉 🍾 Congratulations 🔥 🚀
+       </h2>
+ 
+       <h4 class="text-center">
+         Your Domains is now active at:
+         </h4>
+   
+         <h3 class="text-center purple-8">
+           <a :href="'https://'+successData.local_part + '.cypher.space'" target="_blank">
+            {{ successData.local_part }}.cypher.space </a>
+           </h3>
+           <h4 class="text-center">
+             &
+             </h4>
+           <h3 class="text-center purple-8">
+             <a :href="'https://'+successData.local_part + '.sov.pub'" target="_blank">
+              {{ successData.local_part }}.sov.pub </a>
+             </h3>
 
-    <h3>Important!</h3>
-    <p>
+    <h3 class="text-center">Important!</h3>
+    <p class="text-center">
       Bookmark this link:
       <a
         class="text-secondary"
@@ -22,7 +35,7 @@ context %} {% block page %}
         successData.address_id }}</a
       >
     </p>
-    <p>
+    <p class="text-center">
       In case you ever need to change your pubkey, you can still keep this NIP-5
       identity. Just come back to the above linked page to change the pubkey
       associated to your identity.
@@ -31,32 +44,19 @@ context %} {% block page %}
   </q-card>
   <q-card class="q-pa-lg q-pt-lg" v-if="success == false">
     <q-form @submit="createAddress" class="q-gutter-md">
-      <p>
-        You can use this page to get NIP-5 verified on the nostr protocol under
-        the {{ domain.domain }} domain.
-      </p>
-      <p>
-        The current price is {% if domain.currency != "Satoshis" %}
-        <b
-          >{{ "{:0,.2f}".format(domain.amount / 100) }} {{ domain.currency }}</b
-        >
-        {% else %}
-        <b>{{ "{}".format(domain.amount) }} {{ domain.currency }}</b>
-        {% endif %} for an account (if you do not own the domain, the service
-        provider can disable at any time).
-      </p>
 
-      <p>After submitting payment, your address will be</p>
+
+
 
       <q-input
         filled
         dense
         v-model.trim="formDialog.data.local_part"
-        label="Local Part"
-        placeholder="benarc"
+        label="Name"
+        placeholder="subdomain"
       >
         <template v-slot:append>
-          <span style="font-size: 18px">@{{ domain.domain }} </span>
+          <span style="font-size: 18px"> </span>
         </template>
       </q-input>
 
